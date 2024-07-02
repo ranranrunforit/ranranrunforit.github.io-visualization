@@ -110,6 +110,8 @@ d3.csv("data/firetotal.csv",
       .style("border-radius", "5px")
       .style("padding", "5px")
 
+    
+
       // Three function that change the tooltip when user hover / move / leave a cell
       const mouseover = function(event,d) {
         Tooltip
@@ -117,7 +119,7 @@ d3.csv("data/firetotal.csv",
       }
       const mousemove = function(event,d) {
         Tooltip
-        .html("Year: " + d.year + "<br/>Number of fires in the US: " + d.total)
+        .html("Year: " + d.year.toLocaleString("en", { year: "numeric", timeZone: "UTC"} + "\nNumber of fires in the US: " + d.total)
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
         .style("top", (event.pageY) + "px")
