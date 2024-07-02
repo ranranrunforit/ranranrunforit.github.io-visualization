@@ -40,7 +40,7 @@
       
           // Add X axis --> it is a date format
           const x = d3.scaleTime()
-            .domain(d3.extent(countedData, function(d) { return d.year; }))
+            .domain(d3.extent(data, function(d) { return d.year; }))
             .range([ 0, width ]);
           svg.append("g")
             .attr("transform", `translate(0, ${height})`)
@@ -48,14 +48,14 @@
       
           // Add Y axis
           const y = d3.scaleLinear()
-            .domain([0, d3.max(countedData, function(d) { return +d.number_of_incident; })])
+            .domain([0, d3.max(data, function(d) { return +d.number_of_incident; })])
             .range([ height, 0 ]);
           svg.append("g")
             .call(d3.axisLeft(y));
       
           // Add the line
           svg.append("path")
-            .datum(countedData)
+            .datum(data)
             .attr("fill", "none")
             .attr("stroke", "steelblue")
             .attr("stroke-width", 1.5)
