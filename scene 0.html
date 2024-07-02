@@ -110,9 +110,9 @@ d3.csv("data/firetotal.csv",
   // Add the event listeners that show or hide the tooltip.
   const bisect = d3.bisector(d => d.year).center;
   function pointermoved(event) {
-    const i = bisect(aapl, x.invert(d3.pointer(event)[0]));
+    const i = bisect(data, x.invert(d3.pointer(event)[0]));
     tooltip.style("display", null);
-    tooltip.attr("transform", `translate(${x(aapl[i].year)},${y(aapl[i].total)})`);
+    tooltip.attr("transform", `translate(${x(data[i].year)},${y(data[i].total)})`);
 
     const path = tooltip.selectAll("path")
       .data([,])
@@ -125,7 +125,7 @@ d3.csv("data/firetotal.csv",
       .join("text")
       .call(text => text
         .selectAll("tspan")
-        .data([formatDate(aapl[i].year), formatValue(aapl[i].total)])
+        .data([formatDate(data[i].year), formatValue(data[i].total)])
         .join("tspan")
           .attr("x", 0)
           .attr("y", (_, i) => `${i * 1.1}em`)
