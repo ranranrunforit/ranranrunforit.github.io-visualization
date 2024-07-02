@@ -66,8 +66,8 @@ d3.csv("data/firetotal.csv",
       .attr("y2", y(max))
       .selectAll("stop")
         .data([
-          {offset: "50%", color: "yellow"},
-          {offset: "100%", color: "red"}
+          {offset: "0%", color: "red"},
+          {offset: "100%", color: "brown"}
         ])
       .enter().append("stop")
         .attr("offset", function(d) { return d.offset; })
