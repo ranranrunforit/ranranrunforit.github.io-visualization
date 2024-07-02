@@ -80,8 +80,8 @@
       .attr("stroke", "url(#line-gradient)" )
       .attr("stroke-width", 2)
       .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return y(d.total) })
         )
 
 })
