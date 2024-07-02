@@ -135,7 +135,7 @@ svg.append("text")
       }
       const mousemove = function(event,d) {
         Tooltip
-        .html("Year: " + d.year.toLocaleString("en", { year: "numeric", timeZone: "UTC"}) + "<br>Number of fires in the US: " + d.total)
+        .html("Year: " + d.year.toLocaleString("en", { year: "numeric", timeZone: "UTC"}) + "<br>Number of Wildfires: " + d.total)
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
         .style("top", (event.pageY) + "px")
