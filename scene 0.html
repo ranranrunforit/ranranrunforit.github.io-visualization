@@ -38,19 +38,19 @@
         // Now I can use this dataset:
   function(data) {
 
-   // Add X axis --> it is a date format
-    const x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.year; }))
       .range([ 0, width ]);
     svg.append("g")
-      .attr("transform", `translate(0, ${height})`)
+      .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
     // Max value observed:
-    const max = d3.max(data, function(d) { return +d.value; })
+    const max = d3.max(data, function(d) { return +d.total; })
 
     // Add Y axis
-    const y = d3.scaleLinear()
+    var y = d3.scaleLinear()
       .domain([0, max])
       .range([ height, 0 ]);
     svg.append("g")
