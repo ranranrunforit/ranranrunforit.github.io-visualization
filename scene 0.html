@@ -86,29 +86,29 @@ d3.csv("data/firetotal.csv",
         .y(function(d) { return y(d.total) })
         )
      // text label for the y axis
+    /*
         svg.append("text")
-            .attr("text-anchor", "end")
-            //.attr("transform", "rotate(-90)")
+            .attr("transform", "rotate(-90)")
             .attr("y", 0 - margin.left)
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
-            //.style("text-anchor", "middle")
-            .text("Number of WildFires");
+            .style("text-anchor", "middle")
+            .text("Number of WildFires");*/
 
     // Add X axis label:
 svg.append("text")
     .attr("text-anchor", "end")
     .attr("x", width)
     .attr("y", height + margin.top + 20)
-    .text("X axis title");
+    .text("Year");
 
 // Y axis label:
 svg.append("text")
     .attr("text-anchor", "end")
-    //.attr("transform", "rotate(-90)")
+    .attr("transform", "rotate(-90)")
     .attr("y", -margin.left + 20)
-    .attr("x", -margin.top - 10)
-    .text("Y axis title")
+    .attr("x", -margin.top)
+    .text("Number of Wildfires")
 
 
 
