@@ -120,8 +120,8 @@ d3.csv("data/firetotal.csv",
         .html("Exact value: " + d.total)
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
-       .style("left", (d3.mouse(this)[0]+10) + "px")
-       .style("top", (d3.mouse(this)[1]) + "px")
+        .style("top", (event.pageY)+"px")
+        .style("left",(event.pageX)+"px")
       }
       const mouseleave = function(event,d) {
         Tooltip
