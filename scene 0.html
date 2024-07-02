@@ -17,7 +17,7 @@
     <script>
 
         // set the dimensions and margins of the graph
-const margin = {top: 20, right: 40, bottom: 40, left: 40},
+const margin = {top: 20, right: 40, bottom: 40, left: 30},
     width = 800 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -88,7 +88,7 @@ d3.csv("data/firetotal.csv",
      // text label for the y axis
         svg.append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left)
+            .attr("y", 0 - margin.left - 50)
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
