@@ -101,7 +101,7 @@ d3.csv("data/firetotal.csv",
 
       // create a tooltip
     const Tooltip = d3.select("#my_dataviz")
-      .append("text")
+      .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
@@ -121,7 +121,7 @@ d3.csv("data/firetotal.csv",
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
         .style("top", (event.pageY) + "px")
-        .style("left", (event.pageX) + "px")
+        .style("left", (event.pageX) + 10 + "px")
         
       }
       const mouseleave = function(event,d) {
