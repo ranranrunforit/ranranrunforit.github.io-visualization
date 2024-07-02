@@ -101,7 +101,7 @@ d3.csv("data/firetotal.csv",
 
       // create a tooltip
     const Tooltip = d3.select("#my_dataviz")
-      .append("g")
+      .append("rect")
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
@@ -117,11 +117,12 @@ d3.csv("data/firetotal.csv",
       }
       const mousemove = function(event,d) {
         Tooltip
-        .html("Exact value: " + d.total)
+        .html("Year: " + d.year + "<br/>Number of fires in the US: " + d.total)
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
         .style("top", (event.pageY)+"px")
         .style("left",(event.pageX)+"px")
+        
       }
       const mouseleave = function(event,d) {
         Tooltip
