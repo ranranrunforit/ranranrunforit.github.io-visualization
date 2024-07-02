@@ -53,11 +53,9 @@
         // Get the data
         d3.csv("data/firetotal.csv", function (error, data) {
             if (error) throw error;
-
-            var parseYear = d3.timeParse("%Y");
             // format the data
             data.forEach(function (d) {
-                d.date = parseYear(d.Year);
+                d.date =  d3.timeParse("%Y")(d.Year);
                 d.close = +d.total_incidents;
             });
 
