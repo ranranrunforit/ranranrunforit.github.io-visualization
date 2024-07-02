@@ -91,37 +91,62 @@ d3.csv("data/firetotal.csv",
             .attr("dy", "1em")
             .style("text-anchor", "middle")
             .text("Number of WildFires");
-     // create a tooltip
-  var Tooltip = d3.select("#my_dataviz")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
+ // Create the tooltip container.
+  const tooltip = svg.append("g");
 
-  // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
-    Tooltip
-      .style("opacity", 1)
-    d3.select(this)
-      .style("stroke", "black")
-      .style("opacity", 1)
+  function formatValue(value) {
+    return value.toLocaleString("en", {
+      value: "numeric"
+    });
   }
-  var mousemove = function(d) {
-    Tooltip
-      .html( d.total + " Number of fires on " + d.year )
-      .style("left", (d3.mouse(this)[0]+70) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px")
+  
+  function formatDate(date) {
+    return date.toLocaleString("en", {
+      year: "numeric",
+      timeZone: "UTC"
+    });
   }
-  var mouseleave = function(d) {
-    Tooltip
-      .style("opacity", 0)
-    d3.select(this)
-      .style("stroke", "none")
-      .style("opacity", 0.8)
+  
+  // Add the event listeners that show or hide the tooltip.
+  const bisect = d3.bisector(d => d.year).center;
+  function pointermoved(event) {
+    const i = bisect(aapl, x.invert(d3.pointer(event)[0]));
+    tooltip.style("display", null);
+    tooltip.attr("transform", `translate(${x(aapl[i].year)},${y(aapl[i].total)})`);
+
+    const path = tooltip.selectAll("path")
+      .data([,])
+      .join("path")
+        .attr("fill", "white")
+        .attr("stroke", "black");
+
+    const text = tooltip.selectAll("text")
+      .data([,])
+      .join("text")
+      .call(text => text
+        .selectAll("tspan")
+        .data([formatDate(aapl[i].year), formatValue(aapl[i].total)])
+        .join("tspan")
+          .attr("x", 0)
+          .attr("y", (_, i) => `${i * 1.1}em`)
+          .attr("font-weight", (_, i) => i ? null : "bold")
+          .text(d => d));
+
+    size(text, path);
+  }
+
+  function pointerleft() {
+    tooltip.style("display", "none");
+  }
+
+  // Wraps the text with a callout path of the correct size, as measured in the page.
+  function size(text, path) {
+    const {x, y, width: w, height: h} = text.node().getBBox();
+    text.attr("transform", `translate(${-w / 2},${15 - y})`);
+    path.attr("d", `M${-w / 2 - 10},5H-5l5,-5l5,5H${w / 2 + 10}v${h + 20}h-${w + 20}z`);
+  }
+
+  return svg.node();
   }
 
 }).catch((error) => {
