@@ -32,7 +32,7 @@
       
         // When reading the csv, I must format variables:
         function(d){
-          return { year : d3.timeParse("%Y")(d.Year),  total : d.total_incidents }
+          return { year : d3.timeParse("%Y")(d.Year), total : d.total_incidents }
         }).then(
       
         // Now I can use this dataset:
@@ -78,7 +78,7 @@
       .datum(data)
       .attr("fill", "none")
       .attr("stroke", "url(#line-gradient)" )
-      .attr("stroke-width", 2)
+      .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { return x(d.year) })
         .y(function(d) { return y(d.total) })
