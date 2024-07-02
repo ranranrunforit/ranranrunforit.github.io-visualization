@@ -36,9 +36,9 @@
         }).then(
       
         // Now I can use this dataset:
-        function(data) {
-      
-         // Add X axis --> it is a date format
+  function(data) {
+
+    // Add X axis --> it is a date format
     const x = d3.scaleTime()
       .domain(d3.extent(data, function(d) { return d.year; }))
       .range([ 0, width ]);
@@ -46,12 +46,9 @@
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x));
 
-    // Max value observed:
-    const max = d3.max(data, function(d) { return +d.total; })
-
     // Add Y axis
     const y = d3.scaleLinear()
-      .domain([0, max])
+      .domain([0, d3.max(data, function(d) { return +d.total; })])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
@@ -65,7 +62,7 @@
       .attr("d", d3.line()
         .x(function(d) { return x(d.year) })
         .y(function(d) { return y(d.total) })
-       )
+        )
 
 })
 </script>
