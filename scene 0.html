@@ -28,11 +28,11 @@
           .attr("transform", `translate(${margin.left},${margin.top})`);
       
       //Read the data
-      d3.csv("data/firedata_totals_per_year.csv",
+      d3.csv("data/firetotal.csv",
       
         // When reading the csv, I must format variables:
         function(d){
-          return { cat: d.Category, number_of_incident : d.number_of_inc, year : d3.timeParse("%Y")(d.Year) }
+          return { year : d3.timeParse("%Y")(d.Year),  total : d.total_incidents }
         }).then(
       
         // Now I can use this dataset:
@@ -48,20 +48,38 @@
       
           // Add Y axis
           const y = d3.scaleLinear()
-            .domain([0, d3.max(data, function(d) { return +d.number_of_incident; })])
+            .domain([0, d3.max(data, function(d) { return +d.total; })])
             .range([ height, 0 ]);
           svg.append("g")
             .call(d3.axisLeft(y));
+
+          // Set the gradient
+          svg.append("linearGradient")
+            .attr("id", "line-gradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("x1", 0)
+            .attr("y1", y(0))
+            .attr("x2", 0)
+            .attr("y2", y(max))
+            .selectAll("stop")
+              .data([
+                {offset: "0%", color: "blue"},
+                {offset: "100%", color: "red"}
+              ])
+            .enter().append("stop")
+              .attr("offset", function(d) { return d.offset; })
+              .attr("stop-color", function(d) { return d.color; });
+
       
           // Add the line
           svg.append("path")
             .datum(data)
             .attr("fill", "none")
-            .attr("stroke", "steelblue")
+            .attr("stroke", "url(#line-gradient)" )
             .attr("stroke-width", 1.5)
             .attr("d", d3.line()
               .x(function(d) { return x(d.year) })
-              .y(function(d) { return y(d.number_of_incident) })
+              .y(function(d) { return y(d.total) })
               )
       
       })
