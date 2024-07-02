@@ -17,7 +17,7 @@
     <script>
 
         // set the dimensions and margins of the graph
-const margin = {top: 20, right: 40, bottom: 40, left: 70},
+const margin = {top: 20, right: 40, bottom: 40, left: 40},
     width = 800 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -68,8 +68,8 @@ d3.csv("data/firetotal.csv",
       .attr("y2", y(max))
       .selectAll("stop")
         .data([
-          {offset: "0%", color: "blue"},
-          {offset: "100%", color: "red"}
+          {offset: "50%", color: "yellow"},
+          {offset: "100%", color: "brown"}
         ])
       .enter().append("stop")
         .attr("offset", function(d) { return d.offset; })
