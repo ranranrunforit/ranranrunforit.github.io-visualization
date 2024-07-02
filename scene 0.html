@@ -38,38 +38,51 @@
         // Now I can use this dataset:
         function(data) {
       
-          // Add X axis --> it is a date format
-          const x = d3.scaleTime()
-            .domain(d3.extent(data, function(d) { return d.year; }))
-            .range([ 0, width ]);
-          svg.append("g")
-            .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x));
-
+         // Add X axis --> it is a date format
+    const x = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.year; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", `translate(0, ${height})`)
+      .call(d3.axisBottom(x));
 
     // Max value observed:
     const max = d3.max(data, function(d) { return +d.total; })
 
     // Add Y axis
-    var y = d3.scaleLinear()
+    const y = d3.scaleLinear()
       .domain([0, max])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
 
-      
-          // Add the line
-          svg.append("path")
-            .datum(data)
-            .attr("fill", "none")
-            .attr("stroke","red")
-            .attr("stroke-width", 1.5)
-            .attr("d", d3.line()
-              .x(function(d) { return x(d.year) })
-              .y(function(d) { return y(d.total) })
-              )
-      
-      })
+    // Set the gradient
+    svg.append("linearGradient")
+      .attr("id", "line-gradient")
+      .attr("gradientUnits", "userSpaceOnUse")
+      .attr("x1", 0)
+      .attr("y1", y(0))
+      .attr("x2", 0)
+      .attr("y2", y(max))
+      .selectAll("stop")
+        .data([
+          {offset: "0%", color: "blue"},
+          {offset: "100%", color: "red"}
+        ])
+      .enter().append("stop")
+        .attr("offset", function(d) { return d.offset; })
+        .attr("stop-color", function(d) { return d.color; });
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "url(#line-gradient)" )
+      .attr("stroke-width", 2)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return y(d.total) })
+        )
       </script>
     <!--<center>-->
       <p></p>
