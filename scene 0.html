@@ -100,8 +100,7 @@ d3.csv("data/firetotal.csv",
 
 
       // create a tooltip
-    const Tooltip = d3.select("#my_dataviz")
-      .append("div")
+    const Tooltip = svg.append("g")
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
