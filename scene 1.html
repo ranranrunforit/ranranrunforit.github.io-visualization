@@ -391,6 +391,21 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .attr("width", d => x(parseInt(d.qty)))
           .attr("height", y.bandwidth() )
           .style("fill", function(d){ return color(d.VALUE) })
+        .on("mouseover", function(event, d) {
+        Tooltip.style("opacity", 1);
+        Tooltip.style("display", "block");
+    })
+    .on("mousemove", function(event, d) {
+        Tooltip
+          .html("Acres burned: " + d.FIRE_SIZE + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE)
+          .style("left", (event.x)+10 + "px")
+          .style("top", (event.y)-10 + "px")
+    })
+    .on("mouseleave", function(event, d) {
+        Tooltip.style("opacity", 0);
+        Tooltip.style("display", "none");
+    })
+
 
       
 
