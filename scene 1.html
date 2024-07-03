@@ -485,6 +485,10 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     })
 });
 
+      var yearShown = document.getElementById("yearShown");
+myRange.oninput = function() {
+  yearShown.innerHTML = this.value;
+}
                                              
                                              
     </script>
