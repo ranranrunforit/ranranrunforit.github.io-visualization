@@ -17,7 +17,9 @@
     <span style = "text-align: left;width: 50%;display: inline-block;">2000</span><span style = "text-align: right;width: 50%;display: inline-block;">2018</span>
     <p class = "yearLabel">Year shown: <span id="yearShown">2000</span></p>
 
-    <div id="my_dataviz"></div>
+    <div id="my_dataviz">
+      <!-- <p class= "hover-instruct">Hover for more information</p>  -->
+    </div>
 
     <script>
     // Size 
@@ -213,8 +215,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
 
      //add labels for the map chart
     svg.append("text")
-      .attr("x", (width / 2) - 10) // 35 is arbitrary. Just need it to make title look centered            
-      .attr("y", 5)
+      .attr("x", (width / 2) - 30) // 35 is arbitrary. Just need it to make title look centered            
+      .attr("y", 10)
       .attr("text-anchor", "middle")  
       .style("font-size", "16px") 
       .style("font-weight", "bold") 
@@ -224,7 +226,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     .append("text")
     .attr("class", "title")
     .attr("x", (width / 2) - 30) //positions it at the middle of the width
-    .attr("y", 20) 
+    .attr("y", 30) 
     //.attr("font-family", "sans-serif")
     .attr("text-anchor", "middle")  
     .style("font-size", "14px") 
@@ -389,6 +391,22 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .attr("width", d => x(parseInt(d.qty)))
           .attr("height", y.bandwidth() )
           .style("fill", function(d){ return color(d.VALUE) })
+          .on("mouseover", function(event, d) {
+        Tooltip.style("opacity", 1);
+        Tooltip.style("display", "block");
+    })
+    .on("mousemove", function(event, d) {
+        Tooltip
+          .html("Acres burned: " + parseInt(d.qty) + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE)
+          .style("left", (event.x)+10 + "px")
+          .style("top", (event.y)-10 + "px")
+    })
+    .on("mouseleave", function(event, d) {
+        Tooltip.style("opacity", 0);
+        Tooltip.style("display", "none");
+    })
+
+      
 
      // When the bar chart is clicked, call updateBar function 
       d3.selectAll("rect").on("mousedown",function(event, d) {toggleActive(); this.classList.add("active"); selectedCategory = d.NWCG_GENERAL_CAUSE; console.log(activeValue);console.log(d.VALUE);if (activeValue == "val"+d.VALUE){turnOffFilter = true;};activeValue = "";});
