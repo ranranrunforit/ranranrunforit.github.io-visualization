@@ -348,6 +348,10 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
         return b.qty - a.qty;
       });
       
+      y.domain(result.map(function(d) {
+        return d.NWCG_GENERAL_CAUSE;
+      }));
+      
       // map data to existing bars
       var bars = svgBar.selectAll("rect")
                     .data(result)
