@@ -213,6 +213,16 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .style("stroke", "black")
       .style("opacity", .3)
 
+     svg.append("text")
+      .attr("x", (width / 2)-35)             
+      .attr("y", 0 - 100)
+      .attr("text-anchor", "middle")  
+      .style("font-size", "14px") 
+      .style("color", "grey")
+      .style("opacity", ".6") 
+      .text("Hover for more information. "); // instructions for how to interact with map chart
+    
+
     // Add circles:
     svg
     .selectAll("myCircles")
@@ -235,8 +245,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     .on("mousemove", function(event, d) {
         Tooltip
           .html("Fire year: " + d.FIRE_YEAR + "<br>Acres burned: " + d.FIRE_SIZE + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+"<br>State: " + d.STATE + "<br>County: " + d.FIPS_NAME)
-          .style("left", (event.x)+30 + "px")
-          .style("top", (event.y)-30 + "px")
+          .style("left", (event.x)+10 + "px")
+          .style("top", (event.y)-10 + "px")
     })
     .on("mouseleave", function(event, d) {
         Tooltip.style("opacity", 0);
