@@ -211,6 +211,15 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .style("stroke", "black")
       .style("opacity", .3)
 
+     //add labels for the map chart
+    svg.append("text")
+      .attr("x", (width / 2) - 10) // 35 is arbitrary. Just need it to make title look centered            
+      .attr("y", 5)
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px") 
+      .style("font-weight", "bold") 
+      .text("Human-made fires on geomap"); //Title of bar chart
+    
     svg
     .append("text")
     .attr("class", "title")
