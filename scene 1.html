@@ -242,6 +242,15 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
         Tooltip.style("display", "none");
     })
 
+     svg.append("text")
+      .attr("x", (width / 2)-35)             
+      .attr("y", 0 - (margin.top*1.3))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "14px") 
+      .style("color", "grey")
+      .style("opacity", ".6") 
+      .text("Hover for more information");
+
 
     
     //this is nothing important, just a very hacky way to add spacing between the map and bar chart
