@@ -13,7 +13,7 @@
     <h1>How have human-made fires changed over the years?</h1>
     
     <h2>Most fire incidents are concentrated to the west of the country. That hasn't changed in the past two decades.</h2>
-    <input type="range" min="2000" max="2018" value="2000" class="slider" id="myRange">
+    <input type="range" min="2000" max="2018" value="2000" step ="1" class="slider" id="myRange">
     <span style = "text-align: left;width: 50%;display: inline-block;">2000</span><span style = "text-align: right;width: 50%;display: inline-block;">2018</span>
     <p class = "yearLabel">Year shown: <span id="yearShown">2000</span></p>
 
@@ -212,16 +212,16 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .style("opacity", .3)
 
     svg
-  .append("text")
-  .attr("class", "title")
-  .attr("x", (width / 2) - 30) //positions it at the middle of the width
-  .attr("y", 25) 
-  //.attr("font-family", "sans-serif")
-  .attr("text-anchor", "middle")  
-  .style("font-size", "14px") 
-  .style("color", "grey")
-  .style("opacity", ".6") 
-  .text("Hover for more information. ");// instructions for how to interact with bar chart
+    .append("text")
+    .attr("class", "title")
+    .attr("x", (width / 2) - 30) //positions it at the middle of the width
+    .attr("y", 20) 
+    //.attr("font-family", "sans-serif")
+    .attr("text-anchor", "middle")  
+    .style("font-size", "14px") 
+    .style("color", "grey")
+    .style("opacity", ".6") 
+    .text("Hover for more information. ");// instructions for how to interact with map chart
 
     
 
@@ -247,8 +247,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     .on("mousemove", function(event, d) {
         Tooltip
           .html("Fire year: " + d.FIRE_YEAR + "<br>Acres burned: " + d.FIRE_SIZE + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+"<br>State: " + d.STATE + "<br>County: " + d.FIPS_NAME)
-          .style("left", (event.x)+10 + "px")
-          .style("top", (event.y)-10 + "px")
+          .style("left", (event.x)+5 + "px")
+          .style("top", (event.y)-5 + "px")
     })
     .on("mouseleave", function(event, d) {
         Tooltip.style("opacity", 0);
