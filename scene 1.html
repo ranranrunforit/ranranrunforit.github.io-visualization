@@ -216,14 +216,14 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     svg
   .append("text")
   .attr("class", "title")
-  .attr("x", width / 2) //positions it at the middle of the width
-  .attr("y", 30) //positions it from the top by the margin top
+  .attr("x", (width / 2) - 35) //positions it at the middle of the width
+  .attr("y", 30) 
   //.attr("font-family", "sans-serif")
   .attr("text-anchor", "middle")  
   .style("font-size", "14px") 
   .style("color", "grey")
   .style("opacity", ".6") 
-  .text("Map Chart");
+  .text("Hover for more information. ");// instructions for how to interact with bar chart
 
     
 
