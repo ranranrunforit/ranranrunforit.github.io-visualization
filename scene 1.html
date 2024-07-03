@@ -23,7 +23,7 @@
 
     <script>
     // Size 
-var width = 530;
+var width = 520;
 var height = 400;
 var widthBar = 250;
 var heightBar = 250;
@@ -243,12 +243,21 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
         Tooltip.style("display", "none");
     })
 
+        svg.append("text")
+      .attr("x", (width / 2)-35)             
+      .attr("y", 0 - (margin.top*1.3))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "14px") 
+      .style("color", "grey")
+      .style("opacity", ".6") 
+      .text("Click on map."); // instructions for how to interact with bar chart
+
 
     
     //this is nothing important, just a very hacky way to add spacing between the map and bar chart
    d3.select("#my_dataviz")
      .append("svg")
-       .attr("width", 60)
+       .attr("width", 80)
        .attr("height", height)
 
     
