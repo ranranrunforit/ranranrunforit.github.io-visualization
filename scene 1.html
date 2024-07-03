@@ -213,43 +213,15 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .style("stroke", "black")
       .style("opacity", .3)
 
-      //add labels for the map chart
-    svg.append("text")
-      .attr("x", (width / 2)-35) // 35 is arbitrary. Just need it to make title look centered            
-      .attr("y", 0 - 50)
-      .attr("text-anchor", "middle")  
-      .style("font-size", "16px") 
-      .style("font-weight", "bold") 
-      .text("Human-made fires on geomap"); //Title of map chart
-
-    svg.append("text")
-      .attr("x", (width / 2)-35)             
-      .attr("y", 0 - 80)
-      .attr("text-anchor", "middle")  
-      .style("font-size", "14px") 
-      .style("color", "grey")
-      .style("opacity", ".6") 
-      .text("Hover for more information."); // instructions for how to interact with map chart
-
-    // Add title to graph
-svg
-  .append("text")
-  .attr("x", 0)
-  .attr("y", -50)
-  .attr("text-anchor", "left")
-  .style("font-size", "22px")
-  .text("A d3.js heatmap");
-
-// Add subtitle to graph
     svg
   .append("text")
-  .attr("x", 0)
-  .attr("y", -20)
-  .attr("text-anchor", "left")
-  .style("font-size", "14px")
-  .style("fill", "grey")
-  .style("max-width", 400)
-  .text("A short description of the take-away message of this chart.");
+  .attr("class", "title")
+  .attr("x", width / 2) //positions it at the middle of the width
+  .attr("y", 0) //positions it from the top by the margin top
+  .attr("font-family", "sans-serif")
+  .attr("fill", "green")
+  .attr("text-anchor", "middle")
+  .text("Map Chart");
 
     
 
