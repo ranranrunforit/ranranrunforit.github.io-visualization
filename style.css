@@ -16,6 +16,9 @@ body{
   white-space: normal;
 }
 
+.my_dataviz1 {
+  float: left;
+}
 
 .icon{
   display:inline;
