@@ -216,7 +216,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
      //add labels for the map chart
     svg.append("text")
       .attr("x", (width / 2) - 30) // 35 is arbitrary. Just need it to make title look centered            
-      .attr("y", 10)
+      .attr("y", 15)
       .attr("text-anchor", "middle")  
       .style("font-size", "16px") 
       .style("font-weight", "bold") 
@@ -226,7 +226,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     .append("text")
     .attr("class", "title")
     .attr("x", (width / 2) - 30) //positions it at the middle of the width
-    .attr("y", 30) 
+    .attr("y", 40) 
     //.attr("font-family", "sans-serif")
     .attr("text-anchor", "middle")  
     .style("font-size", "14px") 
@@ -258,8 +258,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     .on("mousemove", function(event, d) {
         Tooltip
           .html("Fire year: " + d.FIRE_YEAR + "<br>Acres burned: " + d.FIRE_SIZE + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+"<br>State: " + d.STATE + "<br>County: " + d.FIPS_NAME)
-          .style("left", (event.x)+5 + "px")
-          .style("top", (event.y)-5 + "px")
+          .style("left", (event.x)+10 + "px")
+          .style("top", (event.y)-10 + "px")
     })
     .on("mouseleave", function(event, d) {
         Tooltip.style("opacity", 0);
@@ -391,20 +391,6 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .attr("width", d => x(parseInt(d.qty)))
           .attr("height", y.bandwidth() )
           .style("fill", function(d){ return color(d.VALUE) })
-          .on("mouseover", function(event, d) {
-        Tooltip.style("opacity", 1);
-        Tooltip.style("display", "block");
-    })
-    .on("mousemove", function(event, d) {
-        Tooltip
-          .html("Acres burned: " + parseInt(d.qty) + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE)
-          .style("left", (event.x)+10 + "px")
-          .style("top", (event.y)-10 + "px")
-    })
-    .on("mouseleave", function(event, d) {
-        Tooltip.style("opacity", 0);
-        Tooltip.style("display", "none");
-    })
 
       
 
