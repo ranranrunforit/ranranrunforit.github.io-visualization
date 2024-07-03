@@ -18,12 +18,7 @@
     <p class = "yearLabel">Year shown: <span id="yearShown">2000</span></p>
 
     <div id="my_dataviz">
-      <div class="container" id="my_datavizmap">
       <p class= "hover-instruct">Hover for more information</p>
-      </div>
-      <div class="container" id="my_datavizbar">
-      </div>
-
     </div>
 
     <script>
@@ -163,7 +158,7 @@ var projection = d3.geoMercator()
     .translate([ width/2, height/2 ])
 
 // create a tooltip
- var Tooltip = d3.select("#my_datavizmap")
+ var Tooltip = d3.select("#my_dataviz")
  .append("div")
  .attr("class", "tooltip")
  .style("opacity", 0)
@@ -174,7 +169,7 @@ var projection = d3.geoMercator()
  .style("padding", "5px")
 
 //svg for US map
-var svg = d3.select("#my_datavizmap")
+var svg = d3.select("#my_dataviz")
   .append("svg")
   .attr("width", width)
   .attr("height", height)
@@ -247,18 +242,18 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
         Tooltip.style("display", "none");
     })
 
-/*
+
     
     //this is nothing important, just a very hacky way to add spacing between the map and bar chart
    d3.select("#my_dataviz")
      .append("svg")
-       .attr("width", width)
-       .attr("height", 60)
+       .attr("width", 10)
+       .attr("height", height)
 
-  */  
+    
 
     //now we make the bar chart
-    var svgBar = d3.select("#my_datavizbar")
+    var svgBar = d3.select("#my_dataviz")
       .append("svg")
         .attr("width", widthBar + margin.left + margin.right)
         .attr("height", heightBar + margin.top + margin.bottom)
