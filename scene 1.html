@@ -397,7 +397,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     })
     .on("mousemove", function(event, d) {
         Tooltip
-          .html("Acres burned: " + d.FIRE_SIZE + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE)
+          .html("Acres burned: " + d.qty + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE)
           .style("left", (event.x)+10 + "px")
           .style("top", (event.y)-10 + "px")
     })
