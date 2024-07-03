@@ -17,7 +17,11 @@
     <span style = "text-align: left;width: 50%;display: inline-block;">2000</span><span style = "text-align: right;width: 50%;display: inline-block;">2018</span>
     <p class = "yearLabel">Year shown: <span id="yearShown">2000</span></p>
 
-    <div id="my_dataviz1" style="display: inline-block"><p class= "hover-instruct">Hover for more information</p></div>
+    <div id="my_dataviz1">
+      <p class= "hover-instruct">Hover for more information</p>
+      <div id="my_datavizmap" style="display: inline"></div>
+      <div id="my_datavizbar" style="display: inline"></div>
+    </div>
 
     <script>
     // Size 
@@ -156,7 +160,7 @@ var projection = d3.geoMercator()
     .translate([ width/2, height/2 ])
 
 // create a tooltip
- var Tooltip = d3.select("#my_dataviz1")
+ var Tooltip = d3.select("#my_datavizmap")
  .append("div")
  .attr("class", "tooltip")
  .style("opacity", 0)
@@ -167,7 +171,7 @@ var projection = d3.geoMercator()
  .style("padding", "5px")
 
 //svg for US map
-var svg = d3.select("#my_dataviz1")
+var svg = d3.select("#my_datavizmap")
   .append("svg")
   .attr("width", width)
   .attr("height", height)
@@ -251,7 +255,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
   */  
 
     //now we make the bar chart
-    var svgBar = d3.select("#my_dataviz1")
+    var svgBar = d3.select("#my_datavizbar")
       .append("svg")
         .attr("width", widthBar + margin.left + margin.right)
         .attr("height", heightBar + margin.top + margin.bottom)
