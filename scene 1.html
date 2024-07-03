@@ -243,14 +243,6 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
         Tooltip.style("display", "none");
     })
 
-        svg.append("text")
-      .attr("x", (width / 2)-35)             
-      .attr("y", 0 - 35)
-      .attr("text-anchor", "middle")  
-      .style("font-size", "14px") 
-      .style("color", "grey")
-      .style("opacity", ".6") 
-      .text("Click on map."); // instructions for how to interact with bar chart
 
 
     
@@ -337,8 +329,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       }, {});
 
       // sort data
-      result.sort(function(b, a) {
-        return a.qty - b.qty;
+      result.sort(function(a, b) {
+        return b.qty - a.qty;
       });
 
 
