@@ -16,6 +16,9 @@ body{
   white-space: normal;
 }
 
+.container {
+  float: left;
+}
 
 .icon{
   display:inline;
