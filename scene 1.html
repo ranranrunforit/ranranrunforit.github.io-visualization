@@ -217,7 +217,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
   .append("text")
   .attr("class", "title")
   .attr("x", width / 2) //positions it at the middle of the width
-  .attr("y", 0) //positions it from the top by the margin top
+  .attr("y",  margin.top - 30) //positions it from the top by the margin top
   .attr("font-family", "sans-serif")
   .attr("fill", "green")
   .attr("text-anchor", "middle")
