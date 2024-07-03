@@ -23,9 +23,9 @@
 
     <script>
     // Size 
-var width = 400;
+var width = 500;
 var height = 400;
-var widthBar = 400;
+var widthBar = 300;
 var heightBar = 250;
 var margin = {top: 20, right: 30, bottom: 100, left: 130};
 
@@ -247,7 +247,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     //this is nothing important, just a very hacky way to add spacing between the map and bar chart
    d3.select("#my_dataviz")
      .append("svg")
-       .attr("width", 10)
+       .attr("width", 20)
        .attr("height", height)
 
     
