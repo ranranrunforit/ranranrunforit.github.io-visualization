@@ -190,8 +190,8 @@ var colorSoft = d3.scaleOrdinal()
 //import wildfire data.
 //could also view fires that burned more than 5,000 acress, 10,000 acres, 25,000 acres, 50,000 acres, or 75,000 acres
 //to change dataset view data files in assets
-d3.csv("assets/firesfinaldata.csv").then((table)=>{
-  d3.json("assets/geojson/USA.geojson").then(function(data){
+d3.csv("data/firesfinaldata.csv").then((table)=>{
+  d3.json("data/geojson/USA.geojson").then(function(data){
 
     //we don't show Alaska or Hawaii on the map so exclude these from US map
     let land_states = table.filter((d) => {return d.STATE != "AK"})
