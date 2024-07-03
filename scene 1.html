@@ -17,9 +17,7 @@
     <span style = "text-align: left;width: 50%;display: inline-block;">2000</span><span style = "text-align: right;width: 50%;display: inline-block;">2018</span>
     <p class = "yearLabel">Year shown: <span id="yearShown">2000</span></p>
 
-    <div id="my_dataviz">
-      <p class= "hover-instruct">Hover for more information</p>
-    </div>
+    <div id="my_dataviz"></div>
 
     <script>
     // Size 
@@ -216,8 +214,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     svg
   .append("text")
   .attr("class", "title")
-  .attr("x", (width / 2) - 35) //positions it at the middle of the width
-  .attr("y", 30) 
+  .attr("x", (width / 2) - 30) //positions it at the middle of the width
+  .attr("y", 25) 
   //.attr("font-family", "sans-serif")
   .attr("text-anchor", "middle")  
   .style("font-size", "14px") 
