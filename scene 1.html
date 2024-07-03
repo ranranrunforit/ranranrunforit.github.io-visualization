@@ -239,6 +239,248 @@ d3.csv("assets/firesfinaldata.csv").then((table)=>{
         Tooltip.style("opacity", 0);
         Tooltip.style("display", "none");
     })
+
+
+    
+    //this is nothing important, just a very hacky way to add spacing between the map and bar chart
+   d3.select("#my_dataviz")
+     .append("svg")
+       .attr("width", width)
+       .attr("height", 60)
+
+    //now we make the bar chart
+    var svgBar = d3.select("#my_dataviz")
+      .append("svg")
+        .attr("width", widthBar + margin.left + margin.right)
+        .attr("height", heightBar + margin.top + margin.bottom)
+        .attr("class","overflow-viz")
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+      
+    // Add X axis of the bar chart
+    var x = d3.scaleLinear()
+      .range([ 0, widthBar]);
+
+    //add x axis to the bar chart svg
+    var xAxis = svgBar.append("g")
+      .attr("transform", "translate(0," + heightBar + ")")
+
+
+    // Y axis
+    var y = d3.scaleBand()
+      .range([ 0, heightBar ])
+      .padding(.1);
+
+    //add y axis to the bar chart svg
+    const yAxis = svgBar.append("g");
+    
+    //add labels for the bar chart
+    svgBar.append("text")
+      .attr("x", (widthBar / 2)-35) // 35 is arbitrary. Just need it to make title look centered            
+      .attr("y", 0 - (margin.top*2.5))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px") 
+      .style("font-weight", "bold") 
+      .text("Human-made fires by cause"); //Title of bar chart
+
+    svgBar.append("text")
+      .attr("x", (widthBar / 2)-35)             
+      .attr("y", 0 - (margin.top*1.3))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "14px") 
+      .style("color", "grey")
+      .style("opacity", ".6") 
+      .text("Click on bar to focus. Click again to undo."); // instructions for how to interact with bar chart
+    
+    svgBar.append("text")
+      .attr("x", (widthBar / 2))             
+      .attr("y", heightBar + (margin.top *3.4))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "12px") 
+      .style("font-weight", "bold") 
+      .text("Cumulative Number of acres burned by fires"); //label for the x axis of the bar chart
+      
+    //function to update the bar chart data based on the selected year
+    function updateBarChart(selectedYear){
+
+      //only get the subset of data for the year shown
+      let yearData = land_states.filter( function(d){return d.FIRE_YEAR==selectedYear});
+      
+      // Y axis
+      y.domain(yearData.map(function(d) { return d.NWCG_GENERAL_CAUSE; } ) )
+      yAxis.transition().duration(1000).call(d3.axisLeft(y) ) 
+
+      //grouping data by cause and calculating cumulative acres burned for each cause
+      var result = [];
+      yearData.reduce(function(res, value) {
+        if (!res[value.NWCG_GENERAL_CAUSE]) {
+          res[value.NWCG_GENERAL_CAUSE] = { NWCG_GENERAL_CAUSE: value.NWCG_GENERAL_CAUSE, VALUE: value.VALUE, qty: 0 };
+          result.push(res[value.NWCG_GENERAL_CAUSE])
+        }
+        res[value.NWCG_GENERAL_CAUSE].qty += parseInt(value.FIRE_SIZE);
+        return res;
+      }, {});
+
+      // Add X axis
+      x.domain([0, d3.max(result, function(d) { return parseInt(d.qty) }) ]);
+      xAxis
+        .transition()
+        .duration(1000)
+        .call(d3.axisBottom(x))
+        .selectAll("text")  
+              .style("text-anchor", "end")
+              .attr("dx", "-.8em")
+              .attr("dy", ".15em")
+              .attr("transform", function(d) {
+                return "rotate(-65)" 
+              });
+
+      // map data to existing bars
+      var bars = svgBar.selectAll("rect")
+                    .data(result)
+
+      //generate the bar chart              
+      bars
+        .join("rect")
+        .transition()
+        .duration(1000)
+          .attr("x", x(0) )
+          .attr("x", x(0) )
+          .attr("class",function(d){ return "val"+d.VALUE+"bar bars" })
+          .attr("y", d => y(d.NWCG_GENERAL_CAUSE) )
+          .attr("width", d => x(parseInt(d.qty)))
+          .attr("height", y.bandwidth() )
+          .style("fill", function(d){ return color(d.VALUE) })
+
+     // When the bar chart is clicked, call updateBar function 
+      d3.selectAll("rect").on("mousedown",function(event, d) {toggleActive(); this.classList.add("active"); selectedCategory = d.NWCG_GENERAL_CAUSE; console.log(activeValue);console.log(d.VALUE);if (activeValue == "val"+d.VALUE){turnOffFilter = true;};activeValue = "";});
+      d3.selectAll("rect").on("mouseup",updateBar);
+    }
+
+    //initializing the bar chart by calling the function we made above with the year we want to show first
+    updateBarChart(2000);
+    
+    var selectedCategory = "";
+    
+    function toggleActive(){
+        // console.log("ACTIVATREE");
+        let allBars = document.getElementsByClassName("bars");
+          for (let i = 0; i <= allBars.length-1 ;i++){
+            allBars[i].classList.remove('active');
+          }
+    }
+
+    //updating bar chart when the slider is moved to a different year
+    function updateSlider(){
+      // For each check box:
+      d3.selectAll(".slider").each(function(d){
+        let cb = d3.select(this);
+        let newYear = cb.property("value")
+        let grp = "year"+newYear;
+        currentMapYear = newYear;
+        
+        updateBarChart(currentMapYear);
+
+        svg.selectAll(".dataCircles").transition().duration(1000).style("opacity", 0).attr("r",0);
+        // show the group that the slider indicates
+        svg.selectAll("."+grp).transition().duration(1000).style("opacity", 1).attr("r", function(d){ return size(d.FIRE_SIZE) })
+        // Otherwise I hide it
+      })
+    }
+
+
+    function updateBar(e, f){
+      //first check if we are focusing the bars or unfocusing them
+      if( turnOffFilter == true){
+        //this is what happens to unfocus the bars
+        d3.selectAll("rect").each(function(d){
+          let cb = d3.select(this);
+          let ctgry = d.VALUE;
+          let grp = "val" + ctgry;
+
+          svg.selectAll("."+grp+""+currentMapYear).transition().duration(1000).style("opacity", 1).attr("fill-opacity", .8)
+          svgBar.selectAll("."+grp+"bar").transition().duration(1000).style("fill", function(d){ return color(d.VALUE) });
+
+          svg.selectAll("."+grp+""+currentMapYear).transition().duration(1000).style("opacity", 1).style("stroke",  function(d){ return color(d.VALUE) }).attr("fill-opacity", .4);
+          svgBar.selectAll("."+grp+"bar").transition().duration(1000).style("stroke",  "none" ).style("fill", function(d){ return color(d.VALUE) });
+        })
+        turnOffFilter = false;
+      }
+      else{
+        // For each check box:
+          d3.selectAll("rect").each(function(d){
+            let cb = d3.select(this);
+            let ctgry = d.VALUE;
+            let grp = "val" + ctgry;
+
+            
+            if(this.classList.contains("active")!=true && activeValue != grp){
+              svg.selectAll("."+grp+""+currentMapYear).transition().duration(1000).style("opacity", .3).style("stroke",  function(d){ return color(d.VALUE) }).attr("fill-opacity", .4);
+              svgBar.selectAll("."+grp+"bar").transition().duration(1000).style("stroke",  "none" ).style("fill", function(d){ return colorSoft(d.VALUE) });
+            }
+            else{
+              activeValue = grp;
+              svg.selectAll("."+grp+""+currentMapYear).transition().duration(1000).style("opacity", 1).style("stroke",  "black" ).attr("fill-opacity", .8)
+              svgBar.selectAll("."+grp+"bar").transition().duration(1000).style("fill", function(d){ return color(d.VALUE) });
+            }
+          })
+        }
+        console.log(turnOffFilter)
+    }
+
+    function test (e){
+      console.log("this is a test");
+    }
+    // When the slider changes, I run a function
+    d3.selectAll(".slider").on("change",updateSlider);
+
+    d3.selectAll(".checkbox").on("change",updateBar);
+
+    // And I initialize it at the beginning
+    updateSlider();
+
+    //now I'm making the scale circle legend
+    var valuesToShow = [minRadiusRange, maxRadiusRange/2, maxRadiusRange]
+    var xCircle = 50
+    var xLabel = 100
+    var yCircle = 380
+
+
+    svg
+    .selectAll("legend")
+    .data(valuesToShow)
+    .enter()
+    .append("circle")
+      .attr("cx", xCircle)
+      .attr("cy", function(d){ return yCircle - size(d) } )
+      .attr("r", function(d){ return size(d) })
+      .style("fill", "none")
+      .attr("stroke", "black")
+    svg
+      .selectAll("legend")
+      .data(valuesToShow)
+      .enter()
+      .append("line")
+        .attr('x1', function(d){ return xCircle + size(d) } )
+        .attr('x2', xLabel)
+        .attr('y1', function(d){ return yCircle - size(d)*1.5 } )
+        .attr('y2', function(d){ return yCircle - size(d)*1.5 } )
+        .attr('stroke', 'black')
+        .style('stroke-dasharray', ('2,2'))
+    
+    // Add legend: labels
+    svg
+      .selectAll("legend")
+      .data(valuesToShow)
+      .enter()
+      .append("text")
+        .attr('x', xLabel)
+        .attr('y', function(d){ return yCircle - size(d)*1.5 } )
+        .text( function(d){ if(d == maxRadiusRange){return d.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" acres"}else{return d.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} } )
+        .style("font-size", 12)
+        .attr('alignment-baseline', 'middle')
+
                                              
                                              
     </script>
