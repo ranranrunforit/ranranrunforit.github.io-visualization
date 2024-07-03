@@ -154,7 +154,8 @@ var maxRadiusRange = 260000;
 // Map projection for US
 var projection = d3.geoMercator()
     .center([-96, 37])                // GPS of location to zoom on
-    .scale(588)                       // This is like the zoom
+    .scale(width / 1.3 / Math.PI)
+    //.scale(588)                       // This is like the zoom
     .translate([ width/2, height/2 ])
 
 // create a tooltip
@@ -256,7 +257,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     //this is nothing important, just a very hacky way to add spacing between the map and bar chart
    d3.select("#my_dataviz")
      .append("svg")
-       .attr("width", 20)
+       .attr("width", 30)
        .attr("height", height)
 
     
@@ -508,7 +509,7 @@ myRange.oninput = function() {
 
 
       
-    <!--<center>-->
+    <center>
       <p></p>
       <!--<<a class="button1" href="page1.html" style="margin-right: 200px">Previous</a>-->
       <!--<font size="3" face="Arial Black">-->
@@ -519,7 +520,7 @@ myRange.oninput = function() {
       <a class="scene3" href="scene 3.html">Severity</a>
           <!--</font>-->
       <!--<<a class="button1" href="page3-1.html" style="margin-left: 200px" >Next</a>-->
-  <!--</center>-->
+  </center>
 
 
   </body>
