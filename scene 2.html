@@ -39,7 +39,7 @@
 
   <script>
         // Size
-var width = 1000;
+var width = 800;
 var height = 600;
 
 
@@ -181,8 +181,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     //Choose your state visualizaiton code//
     var Statesvg = d3.select("#state")
     .append("svg")
-    .attr("width", 800)
-    .attr("height", 600)
+    .attr("width", 600)
+    .attr("height", 400)
 
     //making dropdown box
     d3.select("#stateSelect")
@@ -201,7 +201,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     var projection2 = d3.geoMercator()
       .center([stateProjs["Texas"][0], stateProjs["Texas"][1]])                // GPS of location to zoom on
         //.scale(stateProjs["Texas"][2])                       // This is like the zoom
-        .scale(stateProjs["Texas"][2] * 1.3) 
+        .scale(stateProjs["Texas"][2] * 1.5) 
         .translate([ width / 2, height / 2 ])
 
     state.features = data.features.filter( function(d){return d.properties.NAME=="Texas"} )
@@ -278,7 +278,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       var proj = d3.geoMercator()
       .center([stateProjs[selectedGroup][0], stateProjs[selectedGroup][1]])                // GPS of location to zoom on
       //.scale(stateProjs[selectedGroup][2])                       // This is like the zoom
-      .scale(stateProjs[selectedGroup][2] * 1.3)                       // This is like the zoom
+      .scale(stateProjs[selectedGroup][2] * 1.5)                       // This is like the zoom
       .translate([ width/2, height/2 ])
 
       //redraw a new state
