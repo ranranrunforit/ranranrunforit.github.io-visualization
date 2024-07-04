@@ -198,7 +198,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     // Map and projection for each individual state
     var projection2 = d3.geoMercator()
       .center([stateProjs["Texas"][0], stateProjs["Texas"][1]])                // GPS of location to zoom on
-        .scale(stateProjs["Texas"][2])                       // This is like the zoom
+        //.scale(stateProjs["Texas"][2])                       // This is like the zoom
+        .scale(468)
         .translate([ width/2, height/2 ])
 
     state.features = data.features.filter( function(d){return d.properties.NAME=="Texas"} )
