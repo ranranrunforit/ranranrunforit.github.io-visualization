@@ -228,8 +228,10 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .style("opacity", .3)     
 
     //creating detail-on-demand functionality by modifying the html (inspired by Alex's tutorial in class)
+    /*
     let selectElem = document.querySelector("#hover_Text");
     selectElem.innerHTML = "Year of Fire: <br> Cause of Fire: <br> Number of acres burned: <br>Location of Fire:";
+    */
 
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
