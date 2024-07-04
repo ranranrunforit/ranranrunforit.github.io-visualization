@@ -171,8 +171,8 @@ d3.csv("data/firetotal.csv",
       }
       const mousemove = function(event,d) {
         Tooltip
-        .html("Year: " + d.year + "<br>Number of Wildfires: " + d.total +"<br>Number of Acres Burned: " + d.acres)
-        // .toLocaleString("en", { year: "numeric", timeZone: "UTC"}) 
+        .html("Year: " + d3.timeParse("%Y")(d.Year) + "<br>Number of Wildfires: " + d.total +"<br>Number of Acres Burned: " + d.acres)
+        // d.Year.toLocaleString("en", { year: "numeric", timeZone: "UTC"}) 
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
         .style("top", (event.pageY) + "px")
