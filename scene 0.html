@@ -105,7 +105,7 @@ d3.csv("data/firetotal.csv",
       .attr("d", d3.area()
         .x(function(d) { return x(d.year) })
         .y0( height )
-        .y1(function(d) { return y2(d.total) })
+        .y1(function(d) { return y(d.total) })
         )
 
     // Add the area
