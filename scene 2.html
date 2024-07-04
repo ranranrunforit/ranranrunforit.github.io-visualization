@@ -346,7 +346,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     })
 
     //this could definitely have been done better...but for now here is the legend for the state vis
-    let legendSvg = d3.select("#legend").attr("class","overflow-viz")
+    let legendSvg = d3.select("#state").attr("class","overflow-viz")
     legendSvg.append("circle").attr("cx",20).attr("cy",20).attr("r", 8).style("fill", "#7c0202")
     legendSvg.append("text").attr("x", 30).attr("y", 20).text("Missing data/not specified/undetermined").style("font-size", "15px").attr("alignment-baseline","middle")
 
