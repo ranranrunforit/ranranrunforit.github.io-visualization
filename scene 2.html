@@ -38,6 +38,19 @@ var width = 800;
 var height = 600;
 
 
+
+// create a tooltip
+ var Tooltip = d3.select("#state")
+ .append("div")
+ .attr("class", "tooltip")
+ .style("opacity", 0)
+ .style("background-color", "white")
+ .style("border", "solid")
+ .style("border-width", "2px")
+ .style("border-radius", "5px")
+ .style("padding", "5px")
+    
+
 //defining variables for color legend
 var colorrange = ["#7c0202", "#b64d24", "#b86213", "#e18820", "#de9b10", "#f3c523", "#7c5201", "#fac45a", "#fd860b", "#ffdc6c", "#ff4901", "#a43407"] //we can change these colors later :)
 var colorrangeSoft = ["#edc4c4", "#c3a599", "#dfc4ab", "#efc493", "#e7d6b5", "#f7e5a6", "#cfc8bb", "#fce8c0", "#ffbb76", "#fff1c3", "#fa976f", "#a16851"]
@@ -256,11 +269,24 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       county: d.FIPS_NAME,
       cause: d.NWCG_GENERAL_CAUSE
       });
+       Tooltip.style("opacity", 1);
+        Tooltip.style("display", "block");
     })
     .on("mouseout", function (_) {
       setHover();
+    }) //;
+    .on("mousemove", function(event, d) {
+        Tooltip
+          .html("Fire year: " + d.FIRE_YEAR + "<br>Acres burned: " + d.FIRE_SIZE + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+"<br>State: " + d.STATE + "<br>County: " + d.FIPS_NAME)
+          .style("left", (event.x)+10 + "px")
+          .style("top", (event.y)-10 + "px")
+    })
+    .on("mouseleave", function(event, d) {
+        Tooltip.style("opacity", 0);
+        Tooltip.style("display", "none");
     });
-      
+
+                                           
     var currentSelection = "Texas"
 
     // A function that update the chart
