@@ -49,7 +49,7 @@ d3.csv("data/firetotal.csv",
       .call(d3.axisBottom(x));
 
     // Max value observed:
-    const max = d3.max(data, function(d) { return +d.acres; })
+    const max = d3.max(data, function(d) { return +d.total; })
 
     // Add Y axis
     const y = d3.scaleLinear()
@@ -89,13 +89,13 @@ d3.csv("data/firetotal.csv",
     // Add the area
     svg.append("path")
       .datum(data)
-      .attr("fill", "#f3c523")
+      .attr("fill", "#7c0202")
       .attr("fill-opacity", .6)
       .attr("stroke", "none")
       .attr("d", d3.area()
         .x(function(d) { return x(d.year) })
         .y0( height )
-        .y1(function(d) { return y(d.acres) })
+        .y1(function(d) { return y(d.total) })
         )
 
     // Add X axis label:
@@ -135,7 +135,7 @@ d3.csv("data/firetotal.csv",
       }
       const mousemove = function(event,d) {
         Tooltip
-        .html("Year: " + d.year.toLocaleString("en", { year: "numeric", timeZone: "UTC"}) + "<br>Number of Wildfires: " + d.total)
+        .html("Year: " + d.year.toLocaleString("en", { year: "numeric", timeZone: "UTC"}) + "<br>Number of Wildfires: " + d.total +"<br>Number of acres burned: " + d.acres)
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
         .style("top", (event.pageY) + "px")
