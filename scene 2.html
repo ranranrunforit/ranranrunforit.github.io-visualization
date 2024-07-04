@@ -153,11 +153,14 @@ var stateProjs = {"Alabama": [-82, 30, 1000],
  "Wyoming": [-106, 42, 1300]}
 
 
+//adjusting the size of the circle for both the bubble map and the key to use
+var minRadiusRange = 1;
+var maxRadiusRange = 260000;
+
 //main color legend
 var color = d3.scaleOrdinal()
       .domain(categories)
       .range(colorrange)
-
 
  // Add a scale for bubble size
  var size = d3.scaleLinear()
