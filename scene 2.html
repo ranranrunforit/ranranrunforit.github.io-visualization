@@ -22,18 +22,12 @@
     <div id="state">
        <svg id = "legend" width = "250" height = "370">
       </svg>
-
-     
-
-      <div id="hover_Text"></div>
-      
-
     </div>
 
   <div id="">
       <p class="choose">Hover for more information</p>
 
-      <!--<div id="hover_Text"></div>-->
+      <div id="hover_Text"></div>
       
     </div>
     
@@ -338,13 +332,13 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     })
 
     
-     
+    /* 
     //this is nothing important, just a very hacky way to add spacing between the map and bar chart
    d3.select("#state")
      .append("svg")
        .attr("width", 30)
        .attr("height", height)
-    
+    */
 
     //this could definitely have been done better...but for now here is the legend for the state vis
     let legendSvg = d3.select("#legend").attr("class","overflow-viz")
