@@ -169,6 +169,17 @@ var projection = d3.geoMercator()
  .style("border-radius", "5px")
  .style("padding", "5px")
 
+// create a tooltip
+ var Tooltipb = d3.select("#my_dataviz")
+ .append("div")
+ .attr("class", "tooltip")
+ .style("opacity", 0)
+ .style("background-color", "white")
+ .style("border", "solid")
+ .style("border-width", "2px")
+ .style("border-radius", "5px")
+ .style("padding", "5px")
+
 //svg for US map
 var svg = d3.select("#my_dataviz")
   .append("svg")
@@ -391,6 +402,21 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .attr("width", d => x(parseInt(d.qty)))
           .attr("height", y.bandwidth() )
           .style("fill", function(d){ return color(d.VALUE) })
+          .on("mouseover", function(event, d) {
+            Tooltipb.style("opacity", 1);
+            Tooltipb.style("display", "block");
+        })
+        .on("mousemove", function(event, d) {
+            Tooltipb
+              .html("Number of Acres burned: " + parseInt(d.qty) + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE)
+              .style("left", (event.x)+10 + "px")
+              .style("top", (event.y)-10 + "px")
+        })
+        .on("mouseleave", function(event, d) {
+            Tooltipb.style("opacity", 0);
+            Tooltipb.style("display", "none");
+        })
+
 
 
       
