@@ -24,12 +24,12 @@
       </svg>
     </div>
 
- <div id="">
+<!-- <div id="">
       <p class="choose">Hover for more information</p>
 
       <div id="hover_Text"></div>
       
-    </div>
+    </div>-->
     
 
   <script>
@@ -234,7 +234,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
+/*
     function setHover(d) {
       if (!d) {
         selectElem.innerHTML = "Year of Fire: <br> Cause of Fire: <br> Number of acres burned: <br>Location of Fire:";
@@ -247,8 +247,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       <br>
       Location of Fire: ${d.county}, ${d.state}`;
     }
-
-
+*/
     // Add circles:
     Statesvg.selectAll("myCircles")
     .data(table)
@@ -262,19 +261,19 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .attr("stroke-width", 3)
       .attr("fill-opacity", .4)
     .on("mouseover", function (_, d) {
-      setHover({
+      /*setHover({
       acres: d.FIRE_SIZE,
       state: d.STATE,
       year: d.FIRE_YEAR,
       county: d.FIPS_NAME,
       cause: d.NWCG_GENERAL_CAUSE
-      });
+      });*/
        Tooltip.style("opacity", 1);
         Tooltip.style("display", "block");
     })
-    .on("mouseout", function (_) {
+    /*.on("mouseout", function (_) {
       setHover();
-    })//; */
+    }); */
     .on("mousemove", function(event, d) {
         Tooltip
           .html("Year of Fire: " + d.FIRE_YEAR + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+ "<br>Number of acres burned: " + numberWithCommas(d.FIRE_SIZE) + "<br>Location of Fire:" + d.FIPS_NAME + ", " + d.STATE)
