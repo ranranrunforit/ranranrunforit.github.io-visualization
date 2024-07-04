@@ -18,21 +18,23 @@
 
     <select id="stateSelect"></select>
 
-    <div id="">
-      <!--<svg id = "legend" width = "200" height = "370">
-      </svg>-->
-      <div id="state"></div>
-      <svg id = "legend" width = "200" height = "370">
-      </svg>
-      <p class="choose">Hover for more information</p>
-      <div id="hover_Text"></div>
+    <div id="state">
       
+      <svg id = "legend" width = "200" height = "350">
+      </svg>
     </div>
+
+    <div id="">
+      <p class="choose">Hover for more information</p>
+
+      <div id="hover_Text"></div>
+    </div>
+
   <script>
         // Size
-var width = 550;
+var width = 600;
 var height = 400;
-var margin = {top: 20, right: 30, bottom: 100, left: 130};
+//var margin = {top: 20, right: 30, bottom: 100, left: 130};
 
 
 var turnOffFilter = false;
@@ -176,7 +178,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     //Choose your state visualizaiton code//
     var Statesvg = d3.select("#state")
     .append("svg")
-    .attr("width", 550)
+    .attr("width", 600)
     .attr("height", 400)
 
     //making dropdown box
