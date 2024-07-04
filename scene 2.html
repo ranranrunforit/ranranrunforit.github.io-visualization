@@ -24,13 +24,6 @@
       </svg>
     </div>
 
-<!-- <div id="">
-      <p class="choose">Hover for more information</p>
-
-      <div id="hover_Text"></div>
-      
-    </div>-->
-    
 
   <script>
         // Size
@@ -228,28 +221,10 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .style("opacity", .3)     
 
     //creating detail-on-demand functionality by modifying the html (inspired by Alex's tutorial in class)
-    /*
-    let selectElem = document.querySelector("#hover_Text");
-    selectElem.innerHTML = "Year of Fire: <br> Cause of Fire: <br> Number of acres burned: <br>Location of Fire:";
-    */
-
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-/*
-    function setHover(d) {
-      if (!d) {
-        selectElem.innerHTML = "Year of Fire: <br> Cause of Fire: <br> Number of acres burned: <br>Location of Fire:";
-        return;
-      }
 
-      selectElem.innerHTML = `Year of Fire: ${d.year} <br>
-      Cause of Fire: ${d.cause} <br> 
-      Number of acres burned: ${numberWithCommas(d.acres)} 
-      <br>
-      Location of Fire: ${d.county}, ${d.state}`;
-    }
-*/
     // Add circles:
     Statesvg.selectAll("myCircles")
     .data(table)
@@ -263,22 +238,12 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .attr("stroke-width", 3)
       .attr("fill-opacity", .4)
     .on("mouseover", function (_, d) {
-      /*setHover({
-      acres: d.FIRE_SIZE,
-      state: d.STATE,
-      year: d.FIRE_YEAR,
-      county: d.FIPS_NAME,
-      cause: d.NWCG_GENERAL_CAUSE
-      });*/
        Tooltip.style("opacity", 1);
         Tooltip.style("display", "block");
     })
-    /*.on("mouseout", function (_) {
-      setHover();
-    }); */
     .on("mousemove", function(event, d) {
         Tooltip
-          .html("Year of Fire: " + d.FIRE_YEAR + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+ "<br>Number of acres burned: " + numberWithCommas(d.FIRE_SIZE) + "<br>Location of Fire:" + d.FIPS_NAME + ", " + d.STATE)
+          .html("Year of Fire: " + d.FIRE_YEAR + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+ "<br>Number of acres burned: " + numberWithCommas(d.FIRE_SIZE) + "<br>Location of Fire: " + d.FIPS_NAME + ", " + d.STATE)
           .style("left", (event.x)+10 + "px")
           .style("top", (event.y)-10 + "px")
     })
@@ -359,14 +324,6 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     })
 
     
-    /* 
-    //this is nothing important, just a very hacky way to add spacing between the map and bar chart
-   d3.select("#state")
-     .append("svg")
-       .attr("width", 30)
-       .attr("height", height)
-    */
-
     //this could definitely have been done better...but for now here is the legend for the state vis
     let legendSvg = d3.select("#legend").attr("class","overflow-viz")
     legendSvg.append("circle").attr("cx",20).attr("cy",20).attr("r", 8).style("fill", "#7c0202")
