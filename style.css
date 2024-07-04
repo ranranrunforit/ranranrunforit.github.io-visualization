@@ -16,6 +16,13 @@ body{
   white-space: normal;
 }
 
+.axisRed line{
+  stroke: "#7c0202";
+}
+
+.axisSteelBlue path{
+  stroke: "#ff4901";
+}
 
 .icon{
   display:inline;
