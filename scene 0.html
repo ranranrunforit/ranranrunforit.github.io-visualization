@@ -55,15 +55,17 @@ d3.csv("data/firetotal.csv",
     const y = d3.scaleLinear()
       .domain([0, max])
       .range([ height, 0 ]);
-    svg.append("g")
+    svg.append("g").attr("class", "axisSteelBlue")
       .call(d3.axisLeft(y));
 
     // Add Y axis
     const y2 = d3.scaleLinear()
       .domain([0, d3.max(data, function(d) { return +d.acres; })])
       .range([ height, 0 ]);
-    svg.append("g")
+    svg.append("g").attr("class", "axisRed")
+      .attr("transform", "translate( " + width + ", 0 )")
       .call(d3.axisRight(y2));
+
 
     // Set the gradient
     svg.append("linearGradient")
