@@ -66,7 +66,7 @@ d3.csv("data/firetotal.csv",
       .attr("transform", "translate( " + width + ", 0 )")
       .call(d3.axisRight(y2));
 
-
+    /*
     // Set the gradient
     svg.append("linearGradient")
       .attr("id", "line-gradient")
@@ -93,6 +93,19 @@ d3.csv("data/firetotal.csv",
       .attr("d", d3.line()
         .x(function(d) { return x(d.year) })
         .y(function(d) { return y(d.total) })
+        )
+      */
+
+     // Add the area
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "#f3c523")
+      .attr("fill-opacity", .6)
+      .attr("stroke", "none")
+      .attr("d", d3.area()
+        .x(function(d) { return x(d.year) })
+        .y0( height )
+        .y1(function(d) { return y2(d.total) })
         )
 
     // Add the area
@@ -122,11 +135,11 @@ d3.csv("data/firetotal.csv",
         .attr("x", -margin.top)
         .text("Number of Wildfires")
 
-      // Y axis label:
+      // Y2 axis label:
     svg.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
-        .attr("y", margin.right+10)
+        .attr("y", width + margin.right + 20)
         .attr("x", -margin.top)
         .text("Number of Acres")
 
