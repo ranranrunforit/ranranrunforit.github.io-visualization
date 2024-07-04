@@ -86,26 +86,16 @@ d3.csv("data/firetotal.csv",
         .y(function(d) { return y(d.total) })
         )
 
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "url(#line-gradient)" )
-      .attr("stroke-width", 2)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.year) })
-        .y(function(d) { return y(d.acres) })
-        )
-
     // Add the area
     svg.append("path")
       .datum(data)
-      .attr("fill", "#7c0202")
+      .attr("fill", "#f3c523")
       .attr("fill-opacity", .6)
       .attr("stroke", "none")
       .attr("d", d3.area()
         .x(function(d) { return x(d.year) })
         .y0( height )
-        .y1(function(d) { return y(d.total) })
+        .y1(function(d) { return y(d.acres) })
         )
 
     // Add X axis label:
