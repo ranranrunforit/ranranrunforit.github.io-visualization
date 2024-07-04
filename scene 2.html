@@ -36,8 +36,8 @@
     </div>
   <script>
         // Size
-var width = 600;
-var height = 600;
+var width = 500;
+var height = 500;
 var margin = {top: 20, right: 30, bottom: 100, left: 130};
 
 
@@ -337,14 +337,14 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
         updateState(selectedOption)
     })
 
-    
+    /*
      
     //this is nothing important, just a very hacky way to add spacing between the map and bar chart
    d3.select("#state")
      .append("svg")
        .attr("width", 10)
        .attr("height", height)
-    
+    */
 
     //this could definitely have been done better...but for now here is the legend for the state vis
     let legendSvg = d3.select("#legend").attr("class","overflow-viz")
