@@ -33,7 +33,7 @@
   <script>
         // Size
 var width = 800;
-var height = 400;
+var height = 600;
 var margin = {top: 20, right: 30, bottom: 100, left: 130};
 
 
@@ -179,7 +179,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     var Statesvg = d3.select("#state")
     .append("svg")
     .attr("width", 600)
-    .attr("height", 300)
+    .attr("height", 500)
 
     //making dropdown box
     d3.select("#stateSelect")
@@ -199,7 +199,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       .center([stateProjs["Texas"][0], stateProjs["Texas"][1]])                // GPS of location to zoom on
         //.scale(stateProjs["Texas"][2])                       // This is like the zoom
         .scale(1500)
-        .translate([ width * 2 / 3, height * 2 / 3 ])
+        .translate([ width / 2, height / 2 ])
 
     state.features = data.features.filter( function(d){return d.properties.NAME=="Texas"} )
 
