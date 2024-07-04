@@ -96,10 +96,10 @@ d3.csv("data/firetotal.csv",
         )
       */
 
-     // Add the area
+     // Add the total area
     svg.append("path")
       .datum(data)
-      .attr("fill", "#f3c523")
+      .attr("fill", "#ff4901")
       .attr("fill-opacity", .6)
       .attr("stroke", "none")
       .attr("d", d3.area()
@@ -108,7 +108,7 @@ d3.csv("data/firetotal.csv",
         .y1(function(d) { return y(d.total) })
         )
 
-    // Add the area
+    // Add the acres area
     svg.append("path")
       .datum(data)
       .attr("fill", "#7c0202")
@@ -139,7 +139,7 @@ d3.csv("data/firetotal.csv",
     svg.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
-        .attr("y", width + margin.right + 20)
+        .attr("y", width + margin.right - 20)
         .attr("x", -margin.top)
         .text("Number of Acres")
 
