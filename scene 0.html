@@ -89,8 +89,8 @@ d3.csv("data/firetotal.csv",
     // Add the area
     svg.append("path")
       .datum(data)
-      .attr("fill", "#900C3F")
-      .attr("fill-opacity", .3)
+      .attr("fill", "#7c0202")
+      .attr("fill-opacity", .6)
       .attr("stroke", "none")
       .attr("d", d3.area()
         .x(function(d) { return x(d.year) })
