@@ -17,7 +17,7 @@
     <script>
 
         // set the dimensions and margins of the graph
-const margin = {top: 20, right: 80, bottom: 40, left: 60},
+const margin = {top: 20, right: 80, bottom: 40, left: 65},
     width = 800 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -130,6 +130,7 @@ d3.csv("data/firetotal.csv",
     // Y axis label:
     svg.append("text")
         .attr("text-anchor", "end")
+        .attr("fill", "#ff4901")
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left+10)
         .attr("x", -margin.top)
@@ -138,6 +139,7 @@ d3.csv("data/firetotal.csv",
       // Y2 axis label:
     svg.append("text")
         .attr("text-anchor", "end")
+        .attr("fill", "#7c0202")
         .attr("transform", "rotate(-90)")
         .attr("y", width + margin.right)
         .attr("x", -margin.top)
