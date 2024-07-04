@@ -17,9 +17,9 @@
     <script>
 
         // set the dimensions and margins of the graph
-const margin = {top: 20, right: 40, bottom: 40, left: 60},
+const margin = {top: 20, right: 80, bottom: 40, left: 60},
     width = 800 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#my_dataviz")
@@ -121,6 +121,14 @@ d3.csv("data/firetotal.csv",
         .attr("y", -margin.left+10)
         .attr("x", -margin.top)
         .text("Number of Wildfires")
+
+      // Y axis label:
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", margin.right+10)
+        .attr("x", -margin.top)
+        .text("Number of Acres")
 
 
 
