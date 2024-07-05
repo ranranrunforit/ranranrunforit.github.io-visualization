@@ -67,36 +67,6 @@ d3.csv("data/firetotal.csv",
       .attr("transform", "translate( " + width + ", 0 )")
       .call(d3.axisRight(y2));
 
-    /*
-    // Set the gradient
-    svg.append("linearGradient")
-      .attr("id", "line-gradient")
-      .attr("gradientUnits", "userSpaceOnUse")
-      .attr("x1", 0)
-      .attr("y1", y(0))
-      .attr("x2", 0)
-      .attr("y2", y(max))
-      .selectAll("stop")
-        .data([
-          {offset: "0%", color: "orange"},
-          {offset: "100%", color: "brown"}
-        ])
-      .enter().append("stop")
-        .attr("offset", function(d) { return d.offset; })
-        .attr("stop-color", function(d) { return d.color; });
-
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "url(#line-gradient)" )
-      .attr("stroke-width", 2)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.year) })
-        .y(function(d) { return y(d.total) })
-        )
-      */
-
      // Add the total area
     svg.append("path")
       .datum(data)
