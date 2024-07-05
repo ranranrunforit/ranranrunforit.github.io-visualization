@@ -147,6 +147,11 @@ var stateProjs = {"Alabama": [-82, 30, 1000],
  "Wyoming": [-106, 42, 1300]}
 
 
+ //creating detail-on-demand functionality by modifying the html (inspired by Alex's tutorial in class)
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
 //adjusting the size of the circle for both the bubble map and the key to use
 var minRadiusRange = 1;
 var maxRadiusRange = 260000;
@@ -258,7 +263,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     })
     .on("mousemove", function(event, d) {
         Tooltip
-          .html("Fire year: " + d.FIRE_YEAR + "<br>Acres burned: " + d.FIRE_SIZE + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+"<br>State: " + d.STATE + "<br>County: " + d.FIPS_NAME)
+          .html("Fire year: " + d.FIRE_YEAR + "<br>Acres burned: " + numberWithCommas(d.FIRE_SIZE) + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+"<br>State: " + d.STATE + "<br>County: " + d.FIPS_NAME)
           .style("left", (event.x)+10 + "px")
           .style("top", (event.y)-10 + "px")
     })
