@@ -42,8 +42,11 @@ d3.csv("data/firetotal.csv",
   function(data) {
 
     // Add X axis --> it is a date format
-    const x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.year; }))
+    //const x = d3.scaleTime()
+      //.domain(d3.extent(data, function(d) { return d.year; }))
+      //.range([ 0, width ]);
+     const x =  d3.scaleLinear()
+      .domain([0, d3.max(data, function(d) { return d.year; })])
       .range([ 0, width ]);
     svg.append("g")
       .attr("transform", `translate(0, ${height})`)
