@@ -29,6 +29,7 @@ const svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
+
 //Read the data
 d3.csv("data/firetotal.csv",
 
@@ -40,6 +41,11 @@ d3.csv("data/firetotal.csv",
 
   // Now I can use this dataset:
   function(data) {
+
+     //creating detail-on-demand functionality by modifying the html (inspired by Alex's tutorial in class)
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     // Add X axis --> it is a date format
     //const x = d3.scaleTime()
@@ -145,7 +151,7 @@ d3.csv("data/firetotal.csv",
       }
       const mousemove = function(event,d) {
         Tooltip
-        .html("Year: " + d.year + "<br>Number of Wildfires: " + d.total +"<br>Number of Acres Burned: " + d.acres)
+        .html("Year: " + d.year + "<br>Number of Wildfires: " +  numberWithCommas(d.total) +"<br>Number of Acres Burned: " +  numberWithCommas(d.acres))
         // d.year.toLocaleString("en", { year: "numeric", timeZone: "UTC"}) 
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
