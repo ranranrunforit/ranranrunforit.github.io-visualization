@@ -46,7 +46,7 @@ d3.csv("data/firetotal.csv",
       //.domain(d3.extent(data, function(d) { return d.year; }))
       //.range([ 0, width ]);
      const x =  d3.scaleLinear()
-      .domain([d3.min(data, function(d) { return d.year; })], d3.max(data, function(d) { return d.year; })])
+      .domain([d3.min(data, function(d) { return d.year; }), d3.max(data, function(d) { return d.year; })])
       .range([ 0, width ]);
     svg.append("g")
       .attr("transform", `translate(0, ${height})`)
