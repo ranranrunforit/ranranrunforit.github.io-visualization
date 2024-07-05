@@ -243,7 +243,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     })
     .on("mousemove", function(event, d) {
         Tooltip
-          .html("Year of Fire: " + d.FIRE_YEAR + "<br>Cause of fire: "+ d.NWCG_GENERAL_CAUSE+ "<br>Number of acres burned: " + numberWithCommas(d.FIRE_SIZE) + "<br>Location of Fire: " + d.FIPS_NAME + ", " + d.STATE)
+          .html("Year of Fire: " + d.FIRE_YEAR + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE+ "<br>Number of Acres Burned: " + numberWithCommas(d.FIRE_SIZE) + "<br>Location of Fire: " + d.FIPS_NAME + ", " + d.STATE)
           .style("left", (event.x)+10 + "px")
           .style("top", (event.y)-10 + "px")
     })
