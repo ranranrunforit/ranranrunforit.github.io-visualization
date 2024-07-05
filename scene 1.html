@@ -171,19 +171,6 @@ var projection = d3.geoMercator()
  .style("padding", "5px")
 
 
-  // create a tooltip2
- var Tooltip2 = d3.select("#my_dataviz")
- .append("div")
- .attr("class", "tooltip")
- .style("opacity", 0)
- .style("background-color", "white")
- .style("border", "solid")
- .style("border-width", "2px")
- .style("border-radius", "5px")
- .style("padding", "5px")
-
-
-
 //svg for US map
 var svg = d3.select("#my_dataviz")
   .append("svg")
@@ -412,18 +399,18 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .attr("height", y.bandwidth() )
           .style("fill", function(d){ return color(d.VALUE) })
        .on("mouseover", function(event, d) {
-        Tooltip2.style("opacity", 1);
-        Tooltip2.style("display", "block");
+        Tooltip.style("opacity", 1);
+        Tooltip.style("display", "block");
     })
     .on("mousemove", function(event, d) {
-        Tooltip2
+        Tooltip
           .html("Fire Year: " + d.FIRE_YEAR + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE + "<br>Acres Burned: " + numberWithCommas(d.qty))
           .style("left", (event.x)+10 + "px")
           .style("top", (event.y)-10 + "px")
     })
     .on("mouseleave", function(event, d) {
-        Tooltip2.style("opacity", 0);
-        Tooltip2.style("display", "none");
+        Tooltip.style("opacity", 0);
+        Tooltip.style("display", "none");
     })
 
 
