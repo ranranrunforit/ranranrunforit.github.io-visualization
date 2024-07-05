@@ -34,7 +34,8 @@ d3.csv("data/firetotal.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { year : d3.timeParse("%Y")(d.Year), total : d.total_incidents, acres : d.total_acres }
+    //return { year : d3.timeParse("%Y")(d.Year), total : d.total_incidents, acres : d.total_acres }
+    return { year : d.Year, total : d.total_incidents, acres : d.total_acres }
   }).then(
 
   // Now I can use this dataset:
@@ -171,7 +172,7 @@ d3.csv("data/firetotal.csv",
       }
       const mousemove = function(event,d) {
         Tooltip
-        .html("Year: " + d.year.toLocaleString("en", { year: "numeric", timeZone: "America/New_York"}) + "<br>Number of Wildfires: " + d.total +"<br>Number of Acres Burned: " + d.acres)
+        .html("Year: " + d.year + "<br>Number of Wildfires: " + d.total +"<br>Number of Acres Burned: " + d.acres)
         // d.year.toLocaleString("en", { year: "numeric", timeZone: "UTC"}) 
         //.style("left", `${event.layerX+10}px`)
         //.style("top", `${event.layerY}px`)
