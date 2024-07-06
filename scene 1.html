@@ -394,7 +394,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       y.domain(result.map(function(d) {
         return d.NWCG_GENERAL_CAUSE;
       }));
-      
+
+      /*
       // map data to existing bars
       var bars = svgBar.selectAll("rect")
                     .data(result)
@@ -414,26 +415,33 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     
          // .html("Fire Year: " + d.FIRE_YEAR + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE + "<br>Acres Burned: " + numberWithCommas(d.qty))
 
+        */
 
-
-
-  bars
-       .enter()
-    .append("rect")
-    .on("mouseover2", function(event, d) {
-        Tooltip2.style("opacity", 1);
-        Tooltip2.style("display", "block");
-    })
-    .on("mousemove2", function(event, d) {
-        Tooltip2
-          .html("Acres Burned: " + numberWithCommas(parseInt(d.qty)) + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE)
-          .style("left", (event.x)+10 + "px")
-          .style("top", (event.y)-10 + "px")
-    })
-    .on("mouseleave2", function(event, d) {
-        Tooltip2.style("opacity", 0);
-        Tooltip2.style("display", "none");
-    })
+      svgBar.selectAll("rect")
+            .data(result)
+        .transition()
+        .duration(1000)
+          .attr("x", x(0) )
+          .attr("x", x(0) )
+          .attr("class",function(d){ return "val"+d.VALUE+"bar bars" })
+          .attr("y", d => y(d.NWCG_GENERAL_CAUSE) )
+          .attr("width", d => x(parseInt(d.qty)))
+          .attr("height", y.bandwidth() )
+          .style("fill", function(d){ return color(d.VALUE) })
+          .on("mouseover2", function(event, d) {
+              Tooltip2.style("opacity", 1);
+              Tooltip2.style("display", "block");
+          })
+          .on("mousemove2", function(event, d) {
+              Tooltip2
+                .html("Acres Burned: " + numberWithCommas(parseInt(d.qty)) + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE)
+                .style("left", (event.x)+10 + "px")
+                .style("top", (event.y)-10 + "px")
+          })
+          .on("mouseleave2", function(event, d) {
+              Tooltip2.style("opacity", 0);
+              Tooltip2.style("display", "none");
+          })
 
 
       
