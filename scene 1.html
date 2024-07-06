@@ -429,7 +429,9 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .attr("width", d => x(parseInt(d.qty)))
           .attr("height", y.bandwidth() )
           .style("fill", function(d){ return color(d.VALUE) })
-          .on("mouseover2", function(event, d) {
+          
+        
+         d3.selectAll("rect").on("mouseover2", function(event, d) {
               Tooltip2.style("opacity", 1);
               Tooltip2.style("display", "block");
           })
