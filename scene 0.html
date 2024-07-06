@@ -190,7 +190,7 @@ d3.csv("data/firetotal.csv",
       .join("circle")
         .attr("class", "myCircle")
         .attr("cx", d => x(d.year))
-        .attr("cy", d => y(d.acres))
+        .attr("cy", d => y2(d.acres))
         .attr("r", 8)
         .attr("stroke", "#7c0202")
         .attr("stroke-width", 3)
