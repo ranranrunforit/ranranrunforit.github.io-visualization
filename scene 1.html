@@ -431,17 +431,17 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .style("fill", function(d){ return color(d.VALUE) })
           
         
-         d3.selectAll("rect").on("mouseover2", function(event, d) {
+         d3.selectAll("rect").on("mouseover", function(event, d) {
               Tooltip2.style("opacity", 1);
               Tooltip2.style("display", "block");
           })
-          .on("mousemove2", function(event, d) {
+          .on("mousemove", function(event, d) {
               Tooltip2
                 .html("Acres Burned: " + numberWithCommas(parseInt(d.qty)) + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE)
                 .style("left", (event.x)+10 + "px")
                 .style("top", (event.y)-10 + "px")
           })
-          .on("mouseleave2", function(event, d) {
+          .on("mouseleave", function(event, d) {
               Tooltip2.style("opacity", 0);
               Tooltip2.style("display", "none");
           })
