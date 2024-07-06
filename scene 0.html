@@ -165,6 +165,27 @@ d3.csv("data/firetotal.csv",
           .style("opacity", 0)
       }
 */
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "#ff4901")
+      .attr("stroke-width", 2)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return y(d.total) })
+        )
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "#7c0202")
+      .attr("stroke-width", 2)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return y2(d.acres) })
+        )
    
     // Add the points
     svg
