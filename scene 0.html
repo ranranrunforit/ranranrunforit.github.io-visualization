@@ -142,6 +142,7 @@ d3.csv("data/firetotal.csv",
       .style("border-radius", "5px")
       .style("padding", "5px")
 
+
     
 
       // Three function that change the tooltip when user hover / move / leave a cell
@@ -174,7 +175,24 @@ d3.csv("data/firetotal.csv",
         .attr("cx", d => x(d.year))
         .attr("cy", d => y(d.total))
         .attr("r", 8)
-        .attr("stroke", "red")
+        .attr("stroke","#ff4901")
+        .attr("stroke-width", 3)
+        .attr("fill", "white")
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
+
+     // Add the points
+    svg
+      .append("g")
+      .selectAll("dot")
+      .data(data)
+      .join("circle")
+        .attr("class", "myCircle")
+        .attr("cx", d => x(d.year))
+        .attr("cy", d => y(d.acres))
+        .attr("r", 8)
+        .attr("stroke", "#7c0202")
         .attr("stroke-width", 3)
         .attr("fill", "white")
         .on("mouseover", mouseover)
