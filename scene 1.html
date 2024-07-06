@@ -419,6 +419,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
 
       svgBar.selectAll("rect")
             .data(result)
+         .join("rect")
         .transition()
         .duration(1000)
           .attr("x", x(0) )
