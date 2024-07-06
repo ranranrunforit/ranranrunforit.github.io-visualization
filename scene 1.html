@@ -355,10 +355,12 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
 
       //only get the subset of data for the year shown
       let yearData = land_states.filter( function(d){return d.FIRE_YEAR==selectedYear});
-      
+
+      /*
       // Y axis
       y.domain(yearData.map(function(d) { return d.NWCG_GENERAL_CAUSE; } ) )
       yAxis.transition().duration(1000).call(d3.axisLeft(y) ) 
+      */
 
       //grouping data by cause and calculating cumulative acres burned for each cause
       var result = [];
@@ -390,10 +392,12 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
       result.sort(function(a, b) {
         return b.qty - a.qty;
       });
-      
+
+      //Y axis
       y.domain(result.map(function(d) {
         return d.NWCG_GENERAL_CAUSE;
       }));
+      yAxis.transition().duration(1000).call(d3.axisLeft(y) ) 
 
       /*
       // map data to existing bars
