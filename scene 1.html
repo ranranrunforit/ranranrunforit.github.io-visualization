@@ -400,7 +400,38 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
           .style("fill", function(d){ return color(d.VALUE) })
     
          // .html("Fire Year: " + d.FIRE_YEAR + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE + "<br>Acres Burned: " + numberWithCommas(d.qty))
-          
+
+
+    
+// create a tooltip
+ var Tooltip2 = d3.select("#my_dataviz")
+ .append("div")
+ .attr("class", "tooltip")
+ .style("opacity", 0)
+ .style("background-color", "white")
+ .style("border", "solid")
+ .style("border-width", "2px")
+ .style("border-radius", "5px")
+ .style("padding", "5px")
+
+ svgBar.selectAll("rect")
+       .data(result)
+       .enter()
+    .append("rect")
+    .on("mouseover", function(event, d) {
+        Tooltip.style("opacity", 1);
+        Tooltip.style("display", "block");
+    })
+    .on("mousemove", function(event, d) {
+        Tooltip
+          .html("Fire Year: " + d.FIRE_YEAR + "<br>Acres Burned: " + numberWithCommas(parseInt(d.qty)) + "<br>Cause of Fire: "+ d.NWCG_GENERAL_CAUSE)
+          .style("left", (event.x)+10 + "px")
+          .style("top", (event.y)-10 + "px")
+    })
+    .on("mouseleave", function(event, d) {
+        Tooltip.style("opacity", 0);
+        Tooltip.style("display", "none");
+    })
 
 
       
