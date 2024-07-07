@@ -13,7 +13,7 @@
     <h1>The Evolution of Human-made Fires Over Time</h1>
     
     <h2>Most fire incidents are concentrated to the west of the country. That hasn't changed in the past two decades.</h2>
-    <input type="range" min="2000" max="2018" value="2000" step ="1" class="slider" id="myRange">
+    <input type="range" min="2000" max="2018" value="2006" step ="1" class="slider" id="myRange">
     <span style = "text-align: left;width: 50%;display: inline-block;">2000</span><span style = "text-align: right;width: 50%;display: inline-block;">2018</span>
     <p class = "yearLabel">Year shown: <span id="yearShown">2000</span></p>
 
@@ -34,7 +34,7 @@ let activeValue = "";
 
 var turnOffFilter = false;
 
-var currentMapYear = '2000';
+var currentMapYear = '2006';//'2000';
 
 //defining variables for color legend
 var colorrange = ["#7c0202", "#b64d24", "#b86213", "#e18820", "#de9b10", "#f3c523", "#7c5201", "#fac45a", "#fd860b", "#ffdc6c", "#ff4901", "#a43407"] //we can change these colors later :)
@@ -462,7 +462,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     }
 
     //initializing the bar chart by calling the function we made above with the year we want to show first
-    updateBarChart(2000);
+    //updateBarChart(2000);
+    updateBarChart(2006);
     
     var selectedCategory = "";
     
