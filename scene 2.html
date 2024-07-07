@@ -196,16 +196,16 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
 
     //setting default value for dropdown box
     let element = document.getElementById("stateSelect");
-    element.value = "Texas";
+    element.value = "California"//"Texas";
 
     // Map and projection for each individual state
     var projection2 = d3.geoMercator()
-      .center([stateProjs["Texas"][0], stateProjs["Texas"][1]])                // GPS of location to zoom on
+      .center([stateProjs["California"][0], stateProjs["California"][1]])                // GPS of location to zoom on
         //.scale(stateProjs["Texas"][2])                       // This is like the zoom
-        .scale(stateProjs["Texas"][2] * 1.5) 
+        .scale(stateProjs["California"][2] * 1.5) 
         .translate([ width / 2, height / 2 ])
 
-    state.features = data.features.filter( function(d){return d.properties.NAME=="Texas"} )
+    state.features = data.features.filter( function(d){return d.properties.NAME=="California"} )
 
     //drawing state based off of choice from dropdown box
     Statesvg.selectAll("path")
@@ -253,7 +253,7 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     });
 
                                            
-    var currentSelection = "Texas"
+    var currentSelection = "California"//"Texas"
 
     // A function that update the chart
     function updateState(selectedGroup) {
@@ -308,8 +308,8 @@ d3.csv("data/firesfinaldata.csv").then((table)=>{
     }
 
     //defualt to texas in the begining
-    updateState("Texas")
-
+    //updateState("Texas")
+    updateState("California")
     // When the button is changed, run the updateChart function
     d3.select("#stateSelect").on("change", function(event,d) {
         
