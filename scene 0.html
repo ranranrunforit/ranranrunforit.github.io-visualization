@@ -254,9 +254,7 @@ d3.csv("data/firetotal.csv",
     },
     type: d3.annotationCalloutCircle,
     subject: {
-      radius: 35,         // circle radius
-     
-     // radius: 20,         // circle radius
+      radius: 35,         // radius: 20,         // circle radius
      // radiusPadding: 20   // white space around circle befor connector
     },
     data: { x: 2018, y2: 3126631.9},
@@ -274,7 +272,7 @@ d3.csv("data/firetotal.csv",
 const makeAnnotations = d3.annotation()
   .annotations(annotations)
   .accessors({ x: d => d.x , y: d => d.y})
-d3.select("svg")
+d3.select("#my_dataviz")
   .append("g")
   .call(makeAnnotations)
 
