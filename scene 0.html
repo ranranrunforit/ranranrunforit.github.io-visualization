@@ -270,7 +270,11 @@ d3.csv("data/firetotal.csv",
     
 // Add annotation to the chart
 const makeAnnotations = d3.annotation()
-  .annotations(annotations)
+           .type(type)
+            .accessors({ x: d => d.x , y: d => d.y})
+            .annotations(annotations)
+
+        
   //.accessors({ x: d => d.x , y: d => d.y})
 d3.select("svg")
   .append("g")
