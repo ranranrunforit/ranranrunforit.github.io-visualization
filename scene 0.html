@@ -295,7 +295,8 @@ const makeAnnotations = d3.annotation()
 
         
   //.accessors({ x: d => d.x , y: d => d.y})
-d3.select("svg")
+//d3.select("svg")
+  svg
   .append("g")
   .attr("class", "annotation-group")
   .call(makeAnnotations)
