@@ -192,6 +192,23 @@ d3.csv("data/firetotal.csv",
     
      // ==== annotations ====== //
     const annotationsLeft = [
+        {
+    note: {
+      label: "the Esperanza Fire in California burned more than 41,000 arces",
+      title: "In October 2006,",
+      color: "#7c0202",
+    },
+    type: d3.annotationCalloutCircle,
+    subject: {
+      radius: 25,
+      radiusPadding: 3   
+    },
+    color:  "#ff4901",
+    x: 355,
+    y: 5,
+    dy: 0,
+    dx: -30
+  },
   {
     note: {
       label: "the Mendocino Complex Fire in California burned more than 459,123 acres",
@@ -205,7 +222,7 @@ d3.csv("data/firetotal.csv",
     },
     //data: { x: '2018', y2: '3126631.9'},
     color: "#7c0202",
-    x: 855,
+    x: 355,
     y: 5,
     dy: 0,
     dx: -30
