@@ -190,6 +190,62 @@ d3.csv("data/firetotal.csv",
         )
 
     
+     // ==== annotations ====== //
+    const annotationsLeft = [
+  {
+    note: {
+      label: "the Mendocino Complex Fire in California burned more than 459,123 acres",
+      title: "In 2018, ",
+      color: "#7c0202",
+    },
+    type: d3.annotationCalloutCircle,
+    subject: {
+      radius: 25,         // radius: 20,         // circle radius
+      radiusPadding: 3   // radiusPadding: 20,    //white space around circle befor connector
+    },
+    //data: { x: '2018', y2: '3126631.9'},
+    color: "#7c0202",
+    x: 860,
+    y: 5,
+    dy: 0,
+    dx: -30
+  },
+
+   {
+    note: {
+      label: "which could explain the dip in wildfires",
+      title: "2013 was relatively wet and cool,",
+    },
+    type: d3.annotationCalloutCircle,
+    subject: {
+      radius: 25,         
+      radiusPadding: 3  
+    },
+    color: "#ff4901",
+    x: 620,
+    y: 210,
+    dy: 0,
+    dx: 30
+  }
+]
+
+
+    
+// Add annotation to the chart
+const makeAnnotations = d3.annotation()
+            //.type(type)
+            //.accessors({ x: d => d.x , y2: d => d.y2})
+            .annotations(annotationsLeft)
+
+        
+  //.accessors({ x: d => d.x , y: d => d.y})
+//d3.select("svg")
+  svg
+  .append("g")
+  .attr("class", "annotation-group")
+  .call(makeAnnotations)
+
+    
     
     // Add the points
     svg
@@ -245,61 +301,6 @@ d3.csv("data/firetotal.csv",
         Tooltip.style("opacity", 0);
         Tooltip.style("display", "none");
     })
-
-     // ==== annotations ====== //
-    const annotationsLeft = [
-  {
-    note: {
-      label: "the Mendocino Complex Fire in California burned more than 459,123 acres",
-      title: "In 2018, ",
-      color: "#7c0202",
-    },
-    type: d3.annotationCalloutCircle,
-    subject: {
-      radius: 25,         // radius: 20,         // circle radius
-      radiusPadding: 3   // radiusPadding: 20,    //white space around circle befor connector
-    },
-    //data: { x: '2018', y2: '3126631.9'},
-    color: "#7c0202",
-    x: 870,
-    y: 5,
-    dy: 0,
-    dx: -30
-  },
-
-   {
-    note: {
-      label: "which could explain the dip in wildfires",
-      title: "2013 was relatively wet and cool,",
-    },
-    type: d3.annotationCalloutCircle,
-    subject: {
-      radius: 25,         
-      radiusPadding: 3  
-    },
-    color: "#ff4901",
-    x: 630,
-    y: 210,
-    dy: 0,
-    dx: 30
-  }
-]
-
-
-    
-// Add annotation to the chart
-const makeAnnotations = d3.annotation()
-            //.type(type)
-            //.accessors({ x: d => d.x , y2: d => d.y2})
-            .annotations(annotationsLeft)
-
-        
-  //.accessors({ x: d => d.x , y: d => d.y})
-//d3.select("svg")
-  svg
-  .append("g")
-  .attr("class", "annotation-group")
-  .call(makeAnnotations)
 
 
 
