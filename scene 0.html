@@ -242,7 +242,42 @@ d3.csv("data/firetotal.csv",
         Tooltip.style("opacity", 0);
         Tooltip.style("display", "none");
     })
-  
+
+
+
+    // ==== LEFT annotations ====== //
+    const annotations = [
+  {
+    note: {
+      label: "Here is the annotation label",
+      title: "Annotation title"
+    },
+    type: d3.annotationCalloutCircle,
+    subject: {
+      radius: 35,         // circle radius
+     
+     // radius: 20,         // circle radius
+     // radiusPadding: 20   // white space around circle befor connector
+    },
+    data: { x: "2018", y: "3126631.9"},
+    color: ["red"],
+    //x: 40,
+    //y: 160,
+    //dy: 70,
+    dx: 70
+  }
+]
+
+
+    
+// Add annotation to the chart
+const makeAnnotations = d3.annotation()
+  .annotations(annotations)
+d3.select("svg")
+  .append("g")
+  .call(makeAnnotations)
+
+
 
 }).catch((error) => {
   console.log('ERROR: ', error)
