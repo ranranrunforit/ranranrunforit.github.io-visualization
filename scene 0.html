@@ -301,8 +301,8 @@ const makeAnnotations = d3.annotation()
     .on("mousemove", function(event, d) {
         Tooltip
         .html("Year: " + d.year + "<br>Number of Wildfires: " +  numberWithCommas(d.total) )
-          .style("left", (event.x)+10 + "px")
-          .style("top", (event.y)-10 + "px")
+          .style("left", (event.pageX)+10 + "px")
+          .style("top", (event.pageY)-10 + "px")
     })
     .on("mouseleave", function(event, d) {
         Tooltip.style("opacity", 0);
@@ -328,8 +328,8 @@ const makeAnnotations = d3.annotation()
     .on("mousemove", function(event, d) {
         Tooltip
         .html("Year: " + d.year + "<br>Number of Acres Burned: " +  numberWithCommas(d.acres))
-          .style("left", (event.x)+10 + "px")
-          .style("top", (event.y)-10 + "px")
+          .style("left", (event.pageX)+10 + "px")
+          .style("top", (event.pageY)-10 + "px")
     })
     .on("mouseleave", function(event, d) {
         Tooltip.style("opacity", 0);
@@ -348,11 +348,11 @@ const makeAnnotations = d3.annotation()
       <p></p>
       <!--<<a class="button1" href="page1.html" style="margin-right: 200px">Previous</a>-->
       <!--<font size="3" face="Arial Black">-->
-      <a class="scene1" href="scene 0.html">Overview</a>
+      <a class="scene1" href="scene 0.html">Overview (Scene 1)</a>
               |
-      <a class="scene2" href="scene 1.html">Years</a>
+      <a class="scene2" href="scene 1.html">Years (Scene 2)</a>
               |
-      <a class="scene3" href="scene 2.html">States</a>
+      <a class="scene3" href="scene 2.html">States (Scene 3)</a>
           <!--</font>-->
       <!--<<a class="button1" href="page3-1.html" style="margin-left: 200px" >Next</a>-->
   </center>
